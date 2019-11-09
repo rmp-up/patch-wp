@@ -9,6 +9,7 @@
   "require-dev": {
     "johnpbloch/wordpress": "5.2.*",
     "pretzlaw/phpunit-docgen": "3.0.*",
+    "wpackagist-plugin/wordpress-importer":"0.6.*",
     "wp-cli/wp-cli-bundle": "2.3.*"
   },
   "extra": {
