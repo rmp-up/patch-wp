@@ -60,17 +60,13 @@ before_install:
   - mysql -e 'CREATE DATABASE dev;'
   # Try supporting other versions
   - |
-    composer require --update-with-dependencies --ignore-platform-reqs \
+    composer require --update-with-dependencies \
     johnpbloch/wordpress:$WP_VERSION \
     phpunit/phpunit:$PHPUNIT_VERSION
   # Rerun install because downloading WordPress will overwrite plugins
-  - composer install --ignore-platform-reqs
+  - composer install
 
 install:
-  - vendor/bin/wp --allow-root config create --force --dbuser=travis --dbpass="" --dbhost="127.0.0.1" --skip-check
-  - vendor/bin/wp --allow-root core install --skip-email
-  - vendor/bin/wp --allow-root plugin activate --all
-
   # Check WordPress unit tests
   # see https://make.wordpress.org/core/handbook/testing/automated-testing/phpunit/
   - git clone --branch=$WP_VERSION --depth=1 git://develop.git.wordpress.org/ wordpress-develop
@@ -79,13 +75,30 @@ install:
   - mv phpunit-7.5.9.phar wordpress-develop/phpunit
   - cp etc/wp-tests-config.php wordpress-develop/
   # WP UnitTest also tests this plugin
-  - cp -av html/wp-content/plugins/wordpress-importer/ wordpress-develop/src/wp-content/plugins/
   - cd wordpress-develop
-  - npm install
+  - npm install .
   - npm run grunt build
-  - ./phpunit
+  - rm -rf srv/ && ln -rs ../html srv
+  - sed -i "s/'DB_PASSWORD', 'dev'/'DB_PASSWORD', ''/" wp-tests-config.php
+  - sed -i "s/'DB_HOST', 'db'/'DB_HOST', '127.0.0.1'/" wp-tests-config.php
+  - curl -o wordpress-importer.zip https://downloads.wordpress.org/plugin/wordpress-importer.zip
+  - unzip -d tests/phpunit/data/plugins/ wordpress-importer.zip
+  - cd ..
+  - vendor/bin/wp --allow-root config create --force --dbuser=travis --dbpass="" --dbhost="127.0.0.1" --skip-check
+  - vendor/bin/wp --allow-root db reset --yes
+  - vendor/bin/wp --allow-root core install --skip-email
+  - vendor/bin/wp --allow-root plugin activate --all
 
 script:
+  # custom tests first
+  - composer validate --strict --no-check-lock
+  # - vendor/bin/phpunit
+
+  # WordPress tests at last
+  - vendor/bin/wp --allow-root db reset --yes
+  - cd wordpress-develop
+  - ./phpunit
+
   - composer validate --strict --no-check-lock
   # Check if platform requirements would be a problem for others
   - vendor/bin/phpunit --coverage-clover coverage.xml

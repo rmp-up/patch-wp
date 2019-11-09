@@ -21,7 +21,7 @@ services:
       - ".docker/db:/var/lib/mysql"
     environment:
       MYSQL_USER: travis
-      MYSQL_PASSWORD: ""
+      MYSQL_PASSWORD: dev
       MYSQL_DATABASE: dev
       MYSQL_ROOT_PASSWORD: dev
     networks:

@@ -37,8 +37,8 @@ define( 'WP_DEBUG', true );
 
 define( 'DB_NAME', 'dev' );
 define( 'DB_USER', 'travis' );
-define( 'DB_PASSWORD', '' );
-define( 'DB_HOST', '127.0.0.1' );
+define( 'DB_PASSWORD', 'dev' );
+define( 'DB_HOST', 'db' );
 define( 'DB_CHARSET', 'utf8' );
 define( 'DB_COLLATE', '' );
 

@@ -10,23 +10,11 @@
     "patchwork": {
       "html": "lib/*.diff"
     },
-    "wordpress-install-dir": "html",
-    "installer-paths": {
-      "html/wp-content/plugins/{$name}/": [
-        "type:wordpress-plugin"
-      ]
-    }
+    "wordpress-install-dir": "html"
   },
   "require-dev": {
     "johnpbloch/wordpress": "5.2.*",
     "pretzlaw/phpunit-docgen": "3.0.*",
-    "wpackagist-plugin/wordpress-importer":"0.6.*",
     "wp-cli/wp-cli-bundle": "2.3.*"
-  },
-  "repositories":[
-    {
-      "type":"composer",
-      "url":"https://wpackagist.org"
-    }
-  ]
+  }
 }

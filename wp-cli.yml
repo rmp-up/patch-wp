@@ -13,7 +13,7 @@ core install:
 core config:
   dbhost: db
   dbuser: travis
-  dbpass: ""
+  dbpass: dev
   dbname: dev
   dbprefix: wp_
   dbcharset: utf8

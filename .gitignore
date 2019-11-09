@@ -2,6 +2,8 @@
 
 .composer/
 .docker/
+.node-gyp/
+.npm/
 html/
 wordpress-develop/
 
