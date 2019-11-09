@@ -10,7 +10,12 @@
     "patchwork": {
       "html": "lib/*.diff"
     },
-    "wordpress-install-dir": "html"
+    "wordpress-install-dir": "html",
+    "installer-paths": {
+      "html/wp-content/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ]
+    }
   },
   "require-dev": {
     "johnpbloch/wordpress": "5.2.*",

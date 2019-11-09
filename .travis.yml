@@ -78,6 +78,8 @@ install:
   - chmod +x phpunit-7.5.9.phar
   - mv phpunit-7.5.9.phar wordpress-develop/phpunit
   - cp etc/wp-tests-config.php wordpress-develop/
+  # WP UnitTest also tests this plugin
+  - cp -av html/wp-content/plugins/wordpress-importer/ wordpress-develop/src/wp-content/plugins/
   - cd wordpress-develop
   - npm install
   - npm run grunt build
