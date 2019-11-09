@@ -1,18 +1,20 @@
 {
   "name": "patch/wp",
+  "license": "MIT",
   "type": "patchwork",
   "description": "Boilerplate for creating WordPress related patchfiles",
   "require": {
-    "patch/work": "*"
+    "patch/work": "0.*"
   },
   "require-dev": {
     "johnpbloch/wordpress": "5.2.*",
     "pretzlaw/phpunit-docgen": "3.0.*",
-    "patch/work": "*"
+    "wp-cli/wp-cli-bundle": "2.3.*"
   },
   "extra": {
     "patchwork": {
-      "wordpress": "lib/*.diff"
-    }
+      "html": "lib/*.diff"
+    },
+    "wordpress-install-dir": "html"
   }
 }

@@ -1,7 +1,11 @@
 ### Project
 
-wordpress/
+.composer/
+.docker/
+html/
+wordpress-develop/
 
+.bash_history
 
 ### Composer
 
