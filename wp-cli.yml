@@ -1,4 +1,4 @@
-path: wordpress
+path: html
 
 apache_modules:
   - mod_rewrite
