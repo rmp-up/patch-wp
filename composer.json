@@ -4,7 +4,7 @@
   "type": "patchwork",
   "description": "Boilerplate for creating WordPress related patchfiles",
   "require": {
-    "patch/work": "0.*"
+    "patch/work": "^0.2"
   },
   "extra": {
     "patchwork": {
